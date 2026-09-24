@@ -9,6 +9,7 @@ import {Footer} from '@/components/Footer'
 import {FloatingContact} from '@/components/FloatingContact'
 import {TravelAgencyJsonLd} from '@/components/JsonLd'
 import {getSiteSettings} from '@/lib/sanity/fetch'
+import {Analytics} from '@vercel/analytics/next'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -92,6 +93,7 @@ export default async function RootLayout({
         <FloatingContact settings={settings} />
         <SanityLive onReconnect={false} />
         {isDraftMode && <VisualEditing />}
+        <Analytics />
       </body>
     </html>
   )
