@@ -2,8 +2,12 @@ import { MetadataRoute } from 'next'
 import { getAllPackages, getAllDestinations, getAllBlogPosts, getAllServices } from '@/lib/sanity/fetch'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
-  const baseUrl = rawBaseUrl.replace(/\/$/, '')
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+  let rawBaseUrl = envUrl.trim().replace(/\/$/, '')
+  if (rawBaseUrl.includes('happyflyingtravels.com') && !rawBaseUrl.includes('www.')) {
+    rawBaseUrl = rawBaseUrl.replace('happyflyingtravels.com', 'www.happyflyingtravels.com')
+  }
+  const baseUrl = rawBaseUrl.startsWith('http') ? rawBaseUrl : `https://${rawBaseUrl}`
 
   // Fetch all dynamic records for indexing
   const [packages, destinations, posts, services] = await Promise.all([
