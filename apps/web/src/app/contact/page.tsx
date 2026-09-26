@@ -11,9 +11,20 @@ import {getSiteSettings} from '@/lib/sanity/fetch'
 import {EnquiryForm} from '@/components/EnquiryForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Us — HappyFlying Tours & Travels Bangalore',
+  title: 'Contact Us — Best Travel Agency in Bangalore | HappyFlying Tours & Travels',
   description:
-    'Contact HappyFlying Tours & Travels. Reach our Bangalore office in Koramangala or speak with our travel concierges directly on WhatsApp.',
+    'Get in touch with HappyFlying Tours & Travels, premier travel agency in Koramangala, Bangalore. Visit our office, call +91 99001 13691, or connect on WhatsApp for custom holiday tour packages.',
+  keywords: [
+    'contact travel agency bangalore',
+    'travel agency in koramangala',
+    'tour operators near me bangalore',
+    'happyflying office bangalore',
+    'travel agent contact number bangalore',
+    'best travel company in bangalore contact',
+  ],
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/contact',
+  },
 }
 
 export default async function ContactPage() {

@@ -2,7 +2,8 @@ import { MetadataRoute } from 'next'
 import { getAllPackages, getAllDestinations, getAllBlogPosts, getAllServices } from '@/lib/sanity/fetch'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://happyflying.vercel.app'
+  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+  const baseUrl = rawBaseUrl.replace(/\/$/, '')
 
   // Fetch all dynamic records for indexing
   const [packages, destinations, posts, services] = await Promise.all([

@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://happyflying.vercel.app'
+  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+  const baseUrl = rawBaseUrl.replace(/\/$/, '')
 
   return {
     rules: [

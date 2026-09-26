@@ -14,9 +14,20 @@ import {getSiteSettings, getTeamMembers} from '@/lib/sanity/fetch'
 import {SanityImage} from '@/components/SanityImage'
 
 export const metadata: Metadata = {
-  title: 'About HappyFlying Tours & Travels — Bangalore Travel Agency',
+  title: 'About Us — Leading Travel Agency in Bangalore | HappyFlying Tours & Travels',
   description:
-    'Discover our story, leadership team, and mission to craft bespoke luxury vacations and authentic island journeys from Bangalore, India.',
+    'About HappyFlying Tours & Travels LLP: Bangalore’s leading luxury travel agency and bespoke holiday planners headquartered in Koramangala. Over 10+ years crafting premium domestic and international journeys.',
+  keywords: [
+    'about happyflying',
+    'bangalore travel agency',
+    'tour operators in bangalore',
+    'koramangala travel agency',
+    'luxury travel company bangalore',
+    'best travel agent bangalore',
+  ],
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/about',
+  },
 }
 
 export default async function AboutPage() {

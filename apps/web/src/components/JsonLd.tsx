@@ -1,17 +1,29 @@
 export function TravelAgencyJsonLd({
   name = 'HappyFlying Tours & Travels LLP',
-  url = 'https://happyflyingtravels.com',
+  url = 'https://www.happyflyingtravels.com',
   telephone = '+919900113691',
   email = 'operations@happyflyingtravels.com',
   address = 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala, Bangalore, Karnataka 560034',
+}: {
+  name?: string
+  url?: string
+  telephone?: string
+  email?: string
+  address?: string
 }) {
+  const cleanUrl = url.replace(/\/$/, '')
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'TravelAgency',
+    '@type': ['TravelAgency', 'LocalBusiness'],
     name,
-    url,
+    legalName: 'HappyFlying Tours & Travels LLP',
+    url: cleanUrl,
     telephone,
     email,
+    logo: `${cleanUrl}/happyflyinglogo.png`,
+    image: `${cleanUrl}/happyflyinglogo.png`,
+    description:
+      'Premier luxury travel agency and tour operator in Bangalore located in Koramangala. Specializing in bespoke Andaman, Bali, Dubai, Kashmir, and worldwide holidays from Bangalore.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala',
@@ -25,13 +37,39 @@ export function TravelAgencyJsonLd({
       latitude: 12.9352,
       longitude: 77.6245,
     },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '09:00',
-      closes: '20:00',
-    },
+    hasMap: 'https://maps.google.com/?q=HappyFlying+Tours+%26+Travels+Koramangala+Bangalore',
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Bangalore',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Karnataka',
+      },
+      {
+        '@type': 'Country',
+        name: 'India',
+      },
+    ],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '20:00',
+      },
+    ],
     priceRange: '₹₹₹',
+    currenciesAccepted: 'INR, USD, EUR, AED',
+    paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Net Banking',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '150',
+      bestRating: '5',
+      worstRating: '1',
+    },
   }
 
   return (

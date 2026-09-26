@@ -376,6 +376,80 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* 7.5 LOCAL SEO & BANGALORE TRAVEL HUB */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white border-t border-slate-100 w-full overflow-hidden">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="max-w-3xl">
+            <span className="text-xs font-bold uppercase tracking-widest text-sky-700">
+              Bangalore's Premier Travel Specialists
+            </span>
+            <h2 className="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Best Travel Agency in Bangalore for Domestic & International Tours
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+              HappyFlying Tours & Travels LLP is headquartered in <strong>Koramangala, Bangalore</strong>, catering to travelers across Indiranagar, HSR Layout, Whitefield, Jayanagar, and Greater Bangalore. We curate verified luxury vacation packages with direct and connecting departures from Kempegowda International Airport (BLR).
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 space-y-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">Koramangala Head Office</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Located on 80 Feet Road, 5th Block, Koramangala. Meet our destination specialists for one-on-one custom trip planning.
+              </p>
+              <Link href="/contact" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                Get Office Directions →
+              </Link>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 space-y-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                <Plane className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">Direct Bangalore Departures</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Handcrafted flight packages departing BLR to Port Blair (Andaman), Bali (Denpasar), Dubai, Singapore, and Europe.
+              </p>
+              <Link href="/packages" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                Explore Tour Packages →
+              </Link>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 space-y-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">Certified Local Tour Operator</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                10+ years of verified travel expertise, trusted airline partnerships, guaranteed cruise bookings, and 24/7 on-tour safety.
+              </p>
+              <Link href="/about" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                About HappyFlying →
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-slate-100/70 p-6 border border-slate-200/60 flex flex-wrap items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h4 className="text-sm font-bold text-slate-900">Trending Holiday Packages from Bangalore:</h4>
+              <p className="text-xs text-slate-600">
+                Andaman Tour Packages from Bangalore • Bali Honeymoon Packages • Dubai Luxury Tours • Kashmir Paradise Trails • Europe Multi-Country Packages
+              </p>
+            </div>
+            <Link
+              href="/packages"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors"
+            >
+              <span>View All Packages</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 8. FINAL LUXURY CTA SECTION */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 bg-slate-950 text-white overflow-hidden w-full">
         <div className="max-w-5xl mx-auto rounded-3xl sm:rounded-[36px] bg-gradient-to-r from-sky-900 via-[#0A1320] to-slate-900 border border-sky-500/30 p-6 sm:p-10 lg:p-14 text-center space-y-6 shadow-2xl">

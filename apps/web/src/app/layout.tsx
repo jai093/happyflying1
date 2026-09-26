@@ -26,24 +26,55 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: defaultSeo?.metaTitle || 'HappyFlying Tours & Travels | Luxury Tours & Bespoke Travel',
+      default:
+        defaultSeo?.metaTitle ||
+        'HappyFlying Tours & Travels | Best Travel Agency in Bangalore | Luxury Tours & Holiday Packages',
       template: '%s — HappyFlying Tours & Travels',
     },
     description:
       defaultSeo?.metaDescription ||
-      'Wings to wonder, Indian heritage trails & bespoke international holidays crafted around you.',
+      'HappyFlying Tours & Travels is Bangalore’s top-rated travel agency in Koramangala. Handcrafted Andaman, Bali, Dubai, Kashmir & luxury international tour packages from Bangalore with 24/7 concierge assistance.',
     keywords: defaultSeo?.keywords || [
-      'luxury travel',
-      'andaman tour packages',
-      'bespoke tours',
-      'bangalore travel agency',
-      'honeymoon travel',
+      'travel agency in bangalore',
+      'best tour operators in bangalore',
+      'travel agency near me',
+      'koramangala travel agency',
+      'travel agents in koramangala bangalore',
+      'best travel agency in bangalore for international trips',
+      'tour operators in bangalore for domestic and international tours',
+      'andaman tour packages from bangalore',
+      'bali tour packages from bangalore',
+      'dubai holiday packages from bangalore',
+      'kashmir tour packages from bangalore',
+      'honeymoon packages from bangalore',
+      'luxury travel agency bangalore',
+      'custom holiday planners bangalore',
+      'happyflying tours and travels',
+      'happy flying travel agency bangalore',
+      'family tour packages from bangalore',
+      'international flight tickets bangalore',
+      'visa assistance services bangalore',
+      'corporate group tour packages bangalore',
+      'top 10 travel agencies in bangalore',
     ],
-    metadataBase: new URL('https://happyflying.vercel.app'),
+    alternates: {
+      canonical: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, ''),
+    },
+    other: {
+      'geo.region': 'IN-KA',
+      'geo.placename': 'Bangalore, Koramangala',
+      'geo.position': '12.9352;77.6245',
+      ICBM: '12.9352, 77.6245',
+    },
+    metadataBase: new URL(
+      (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, '')
+    ),
     openGraph: {
-      title: defaultSeo?.metaTitle || 'HappyFlying Tours & Travels',
-      description: defaultSeo?.metaDescription || 'Where every journey takes wing with elegance and care.',
-      url: 'https://happyflying.vercel.app',
+      title: defaultSeo?.metaTitle || 'HappyFlying Tours & Travels | Best Travel Agency in Bangalore',
+      description:
+        defaultSeo?.metaDescription ||
+        'Bangalore’s trusted luxury travel agency in Koramangala. Andaman, Bali, Dubai, and bespoke worldwide tours.',
+      url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, ''),
       siteName: 'HappyFlying Tours & Travels',
       images: [
         {
@@ -55,10 +86,18 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
     },
     icons: {
-      icon: '/hflogo.ico',
-      shortcut: '/hflogo.ico',
-      apple: '/hflogo.ico',
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+        { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
     },
+    manifest: '/site.webmanifest',
   }
 }
 
