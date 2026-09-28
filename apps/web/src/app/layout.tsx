@@ -58,7 +58,14 @@ export async function generateMetadata(): Promise<Metadata> {
       'top 10 travel agencies in bangalore',
     ],
     alternates: {
-      canonical: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, ''),
+      canonical: (() => {
+        const envUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+        let raw = envUrl.trim().replace(/\/$/, '')
+        if (raw.includes('happyflyingtravels.com') && !raw.includes('www.')) {
+          raw = raw.replace('happyflyingtravels.com', 'www.happyflyingtravels.com')
+        }
+        return raw.startsWith('http') ? raw : `https://${raw}`
+      })(),
     },
     other: {
       'geo.region': 'IN-KA',
@@ -67,14 +74,28 @@ export async function generateMetadata(): Promise<Metadata> {
       ICBM: '12.9352, 77.6245',
     },
     metadataBase: new URL(
-      (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, '')
+      (() => {
+        const envUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+        let raw = envUrl.trim().replace(/\/$/, '')
+        if (raw.includes('happyflyingtravels.com') && !raw.includes('www.')) {
+          raw = raw.replace('happyflyingtravels.com', 'www.happyflyingtravels.com')
+        }
+        return raw.startsWith('http') ? raw : `https://${raw}`
+      })()
     ),
     openGraph: {
       title: defaultSeo?.metaTitle || 'HappyFlying Tours & Travels | Best Travel Agency in Bangalore',
       description:
         defaultSeo?.metaDescription ||
         'Bangalore’s trusted luxury travel agency in Koramangala. Andaman, Bali, Dubai, and bespoke worldwide tours.',
-      url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com').replace(/\/$/, ''),
+      url: (() => {
+        const envUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'
+        let raw = envUrl.trim().replace(/\/$/, '')
+        if (raw.includes('happyflyingtravels.com') && !raw.includes('www.')) {
+          raw = raw.replace('happyflyingtravels.com', 'www.happyflyingtravels.com')
+        }
+        return raw.startsWith('http') ? raw : `https://${raw}`
+      })(),
       siteName: 'HappyFlying Tours & Travels',
       images: [
         {

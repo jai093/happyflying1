@@ -37,13 +37,6 @@ export function Header({ settings }: HeaderProps) {
     { label: 'Blogs', href: '/blog' },
   ]
 
-  // Extended links for mobile drawer
-  const allNavLinks = [
-    ...navLinks,
-    { label: 'Travel Planner', href: '/travel-planner' },
-    { label: 'Blog', href: '/blog' },
-  ]
-
   const phone = settings.phone || '+91 9900113691'
 
   // Header background styling: on home page, transparent over video without shadow on-scroll animation
@@ -128,7 +121,7 @@ export function Header({ settings }: HeaderProps) {
         {mobileMenuOpen && (
           <div className="lg:hidden mt-3 p-4 rounded-3xl bg-white shadow-xl border border-slate-200 animate-in fade-in duration-200">
             <nav className="flex flex-col space-y-1">
-              {allNavLinks.map((item) => {
+              {navLinks.map((item) => {
                 const isActive =
                   item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
                 return (
