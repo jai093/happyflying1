@@ -140,6 +140,7 @@ export interface Destination {
   travelTips?: string[]
   faqs?: FAQ[]
   relatedPackages?: TravelPackage[]
+  packages?: TravelPackage[]
   seo?: SEO
 }
 

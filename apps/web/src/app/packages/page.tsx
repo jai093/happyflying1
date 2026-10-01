@@ -2,7 +2,6 @@ import type {Metadata} from 'next'
 import {Sparkles} from 'lucide-react'
 import {getAllPackages, getAllDestinations} from '@/lib/sanity/fetch'
 import {PackagesFilterView} from '@/components/PackagesFilterView'
-import {ALL_PACKAGES, ALL_DESTINATIONS} from '@/lib/data/packagesData'
 
 export const metadata: Metadata = {
   title: 'All Travel & Holiday Packages — HappyFlying',
@@ -16,9 +15,8 @@ export default async function PackagesPage() {
     getAllDestinations(),
   ])
 
-  // Merge live Sanity packages or fallback to full verified collection
-  const initialPackages = packages.length > 0 ? packages : ALL_PACKAGES
-  const initialDestinations = destinations.length > 0 ? destinations : ALL_DESTINATIONS
+  const initialPackages = packages
+  const initialDestinations = destinations
 
   return (
     <div className="py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">

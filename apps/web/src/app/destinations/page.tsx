@@ -2,7 +2,6 @@ import type {Metadata} from 'next'
 import {MapPin, Compass} from 'lucide-react'
 import {getAllDestinations} from '@/lib/sanity/fetch'
 import {DestinationCard} from '@/components/DestinationCard'
-import {ALL_DESTINATIONS} from '@/lib/data/packagesData'
 
 export const metadata: Metadata = {
   title: 'Destinations — HappyFlying Tours & Travels',
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 export default async function DestinationsPage() {
   const destinations = await getAllDestinations()
 
-  const list = destinations.length > 0 ? destinations : ALL_DESTINATIONS
+  const list = destinations
 
   return (
     <div className="py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full space-y-12">

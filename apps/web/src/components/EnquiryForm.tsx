@@ -31,57 +31,90 @@ export function EnquiryForm({
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [submittedWhatsappUrl, setSubmittedWhatsappUrl] = useState('')
 
-  const whatsappNumber = settings?.whatsapp ? settings.whatsapp.replace(/[^0-9]/g, '') : '919900113691'
+  const rawWhatsapp = settings?.whatsapp ? settings.whatsapp.replace(/[^0-9]/g, '') : '919900113691'
+  const whatsappNumber = rawWhatsapp || '919900113691'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
     setErrorMessage('')
 
+    const targetPackage = formData.package || formData.destination || 'Custom Travel Inquiry'
+    const guestDetails = `${formData.adults} Adult${formData.adults > 1 ? 's' : ''}${formData.children > 0 ? `, ${formData.children} Child${formData.children > 1 ? 'ren' : ''}` : ''}`
+
+    const messageLines = [
+      `✈️ *New Tour Inquiry - HappyFlying*`,
+      ``,
+      `👤 *Name:* ${formData.name}`,
+      `📞 *Phone:* ${formData.phone}`,
+      `✉️ *Email:* ${formData.email}`,
+      `📍 *Service / Package:* ${targetPackage}`,
+    ]
+
+    if (formData.travelDates && formData.travelDates.trim()) {
+      messageLines.push(`📅 *Travel Dates:* ${formData.travelDates.trim()}`)
+    }
+
+    messageLines.push(`👥 *Travelers:* ${guestDetails}`)
+
+    if (formData.message && formData.message.trim()) {
+      messageLines.push(`📝 *Special Requests:* ${formData.message.trim()}`)
+    }
+
+    messageLines.push(``)
+    messageLines.push(`_Submitted via HappyFlying Website Form_`)
+
+    const fullWhatsappText = messageLines.join('\n')
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fullWhatsappText)}`
+    setSubmittedWhatsappUrl(whatsappUrl)
+
     try {
-      const response = await fetch('/api/enquiry', {
+      // 1. Asynchronously log / save to enquiry API
+      fetch('/api/enquiry', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData),
-      })
+      }).catch((err) => console.error('Enquiry API Error:', err))
 
-      if (!response.ok) {
-        throw new Error('Failed to submit inquiry. Please try WhatsApp or Call directly.')
+      // 2. Open WhatsApp immediately with all inquiry details
+      const opened = window.open(whatsappUrl, '_blank')
+      if (!opened) {
+        window.location.href = whatsappUrl
       }
 
       setStatus('success')
       if (onSuccess) {
-        setTimeout(onSuccess, 2000)
+        setTimeout(onSuccess, 4000)
       }
     } catch (err: unknown) {
       console.error(err)
-      setStatus('error')
-      setErrorMessage(err instanceof Error ? err.message : 'An error occurred')
+      window.open(whatsappUrl, '_blank') || (window.location.href = whatsappUrl)
+      setStatus('success')
     }
   }
 
   if (status === 'success') {
+    const finalUrl = submittedWhatsappUrl || `https://wa.me/${whatsappNumber}`
     return (
       <div className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-8 text-center space-y-4">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
           <CheckCircle2 className="h-8 w-8" />
         </div>
-        <h3 className="text-xl font-bold text-emerald-950">Inquiry Received!</h3>
+        <h3 className="text-xl font-bold text-emerald-950">Inquiry Submitted & Forwarded to WhatsApp!</h3>
         <p className="text-sm text-emerald-800 max-w-md mx-auto">
-          Thank you, {formData.name}. Our Bangalore travel concierge will contact you on <strong>{formData.phone}</strong> shortly with custom package options.
+          Thank you, <strong>{formData.name}</strong>. Your inquiry details have been forwarded to HappyFlying official WhatsApp ({settings?.phone || '+91 99001 13691'}).
         </p>
         <div className="pt-2">
           <a
-            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-              `Hi HappyFlying! I just submitted an inquiry for ${formData.package || formData.destination || 'holiday package'}. My name is ${formData.name}.`
-            )}`}
+            href={finalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl bg-[#25D366] px-5 py-2.5 text-xs font-bold text-white shadow hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 rounded-2xl bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white shadow-lg hover:scale-105 active:scale-95 transition-transform"
           >
-            <MessageSquare className="h-4 w-4" />
-            <span>Connect on WhatsApp for Instant Quote</span>
+            <MessageSquare className="h-5 w-5" />
+            <span>Click here if WhatsApp didn't open automatically</span>
           </a>
         </div>
       </div>
@@ -218,7 +251,7 @@ export function EnquiryForm({
         className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#0A1320] py-4 text-sm font-bold text-[#F3B604] shadow-lg hover:bg-slate-800 transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
       >
         <Send className="h-4 w-4 text-[#F3B604]" />
-        <span>{status === 'submitting' ? 'Submitting Inquiry...' : 'Submit Tour Inquiry'}</span>
+        <span>{status === 'submitting' ? 'Submitting & Opening WhatsApp...' : 'Submit Inquiry & Send to WhatsApp'}</span>
       </button>
 
       <p className="text-center text-[11px] text-slate-500">

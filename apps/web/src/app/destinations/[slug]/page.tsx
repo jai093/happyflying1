@@ -16,7 +16,6 @@ import {
 import {client} from '@/sanity/client'
 import {DESTINATION_SLUGS_QUERY} from '@/lib/sanity/queries'
 import {getDestinationBySlug, getSiteSettings} from '@/lib/sanity/fetch'
-import {ALL_DESTINATIONS, ALL_PACKAGES} from '@/lib/data/packagesData'
 import {SanityImage} from '@/components/SanityImage'
 import {PackageCard} from '@/components/PackageCard'
 import {FaqJsonLd} from '@/components/JsonLd'
@@ -31,41 +30,28 @@ export async function generateStaticParams() {
       .withConfig({useCdn: false})
       .fetch<{slug: string}[]>(DESTINATION_SLUGS_QUERY)
     
-    const set = new Set<string>()
-    if (Array.isArray(slugs)) {
-      slugs.forEach((item) => {
-        if (item?.slug) set.add(item.slug)
-      })
+    if (Array.isArray(slugs) && slugs.length > 0) {
+      return slugs.filter((item) => item?.slug).map((item) => ({slug: item.slug}))
     }
-    ALL_DESTINATIONS.forEach((d) => {
-      const s = typeof d.slug === 'string' ? d.slug : d.slug?.current
-      if (s) set.add(s)
-    })
-    return Array.from(set).map((slug) => ({slug}))
+    return []
   } catch {
-    return ALL_DESTINATIONS.map((d) => ({
-      slug: typeof d.slug === 'string' ? d.slug : d.slug?.current || 'andaman',
-    }))
+    return []
   }
 }
 
 export async function generateMetadata({params}: DestinationPageProps): Promise<Metadata> {
   const {slug} = await params
   const destination = await getDestinationBySlug(slug)
-  const fallbackDest = ALL_DESTINATIONS.find(
-    (d) => (typeof d.slug === 'string' ? d.slug : d.slug?.current) === slug
-  )
-  const target = destination || fallbackDest
 
-  if (!target) {
+  if (!destination) {
     return {title: 'Destination Not Found — HappyFlying'}
   }
 
-  const seo = target.seo
+  const seo = destination.seo
   return {
-    title: seo?.metaTitle || `${target.name} Travel Guide & Packages`,
-    description: seo?.metaDescription || target.shortDescription || `Explore ${target.name} with HappyFlying`,
-    keywords: seo?.keywords || [target.name, 'travel guide', 'island packages'],
+    title: seo?.metaTitle || `${destination.name} Travel Guide & Packages`,
+    description: seo?.metaDescription || destination.shortDescription || `Explore ${destination.name} with HappyFlying`,
+    keywords: seo?.keywords || [destination.name, 'travel guide', 'island packages'],
   }
 }
 
@@ -76,14 +62,11 @@ export default async function DestinationDetailPage({params}: DestinationPagePro
     getSiteSettings(),
   ])
 
-  const fallbackDest = ALL_DESTINATIONS.find(
-    (d) => (typeof d.slug === 'string' ? d.slug : d.slug?.current) === slug
-  )
-  const data = destination || fallbackDest
-
-  if (!data) {
+  if (!destination) {
     return notFound()
   }
+
+  const data = destination
 
   const whatsappNumber = settings.whatsapp ? settings.whatsapp.replace(/[^0-9]/g, '') : '919900113691'
   const phone = settings.phone || '+91 9900113691'
@@ -270,30 +253,47 @@ export default async function DestinationDetailPage({params}: DestinationPagePro
           </div>
 
           {(() => {
-            const destSlugStr = typeof data.slug === 'string' ? data.slug : data.slug?.current || slug
-            const matchedPackages =
-              data.relatedPackages && data.relatedPackages.length > 0
+            const livePackages =
+              data.packages && data.packages.length > 0
+                ? data.packages
+                : data.relatedPackages && data.relatedPackages.length > 0
                 ? data.relatedPackages
-                : ALL_PACKAGES.filter((p) => {
-                    const pDestSlug =
-                      typeof p.destination?.slug === 'string'
-                        ? p.destination.slug
-                        : p.destination?.slug?.current
-                    const pSlug =
-                      typeof p.slug === 'string' ? p.slug : p.slug?.current
-                    return pDestSlug === destSlugStr || pSlug?.includes(destSlugStr)
-                  })
+                : []
 
-            const displayList =
-              matchedPackages.length > 0
-                ? matchedPackages.slice(0, 3)
-                : ALL_PACKAGES.slice(0, 3)
+            if (livePackages.length > 0) {
+              return (
+                <div className="grid md:grid-cols-3 gap-8">
+                  {livePackages.map((pkg) => (
+                    <PackageCard key={pkg._id} pkg={pkg} />
+                  ))}
+                </div>
+              )
+            }
 
             return (
-              <div className="grid md:grid-cols-3 gap-8">
-                {displayList.map((pkg) => (
-                  <PackageCard key={pkg._id} pkg={pkg} />
-                ))}
+              <div className="rounded-3xl border border-sky-100 bg-white p-8 sm:p-12 shadow-sm text-center max-w-2xl mx-auto space-y-4">
+                <div className="mx-auto w-14 h-14 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-700">
+                  <Sparkles className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                  Bespoke {data.name} Itineraries on Request
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-lg mx-auto">
+                  We are currently updating our pre-packaged tours for {data.name}. Our Bangalore travel specialists craft personalized, private itineraries tailored to your dates, preferences, and group size.
+                </p>
+                <div className="pt-2 flex flex-wrap justify-center gap-3">
+                  <a
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                      `Hi HappyFlying! I would like to request a customized travel itinerary for ${data.name}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-xs sm:text-sm font-bold text-white shadow hover:scale-105 transition-transform"
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Request {data.name} Itinerary on WhatsApp</span>
+                  </a>
+                </div>
               </div>
             )
           })()}

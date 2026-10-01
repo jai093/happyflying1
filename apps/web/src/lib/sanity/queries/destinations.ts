@@ -51,6 +51,46 @@ export const DESTINATION_BY_SLUG_QUERY = defineQuery(`
       },
       alt
     },
+    "packages": *[_type == "travelPackage" && defined(slug.current) && status != "draft" && (destination._ref == ^._id || references(^._id) || _id in ^.relatedPackages[]._ref)] {
+      _id,
+      title,
+      "slug": slug.current,
+      packageCode,
+      packageType,
+      categories,
+      status,
+      featured,
+      duration,
+      rating,
+      reviewCount,
+      summary,
+      highlights,
+      "hero": coalesce(hero, heroImage, image) {
+        asset->{
+          _id,
+          url,
+          metadata { lqip, dimensions }
+        },
+        alt,
+        hotspot,
+        crop
+      },
+      destination->{
+        _id,
+        name,
+        "slug": slug.current,
+        region,
+        country
+      },
+      pricing->{
+        _id,
+        finalPrice,
+        displayPrice,
+        currency,
+        occupancy,
+        mealPlan
+      }
+    },
     relatedPackages[]->{
       _id,
       title,
@@ -58,7 +98,7 @@ export const DESTINATION_BY_SLUG_QUERY = defineQuery(`
       duration,
       rating,
       summary,
-      hero {
+      "hero": coalesce(hero, heroImage, image) {
         asset->{ _id, url, metadata { lqip, dimensions } },
         alt
       },

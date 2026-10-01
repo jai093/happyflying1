@@ -19,7 +19,6 @@ import {
 import {client} from '@/sanity/client'
 import {PACKAGE_BY_SLUG_QUERY, PACKAGE_SLUGS_QUERY} from '@/lib/sanity/queries'
 import {getPackageBySlug, getSiteSettings} from '@/lib/sanity/fetch'
-import {ALL_PACKAGES} from '@/lib/data/packagesData'
 import {SanityImage} from '@/components/SanityImage'
 import {ItineraryTimeline} from '@/components/ItineraryTimeline'
 import {InclusionsExclusions} from '@/components/InclusionsExclusions'
@@ -36,44 +35,36 @@ export async function generateStaticParams() {
       .withConfig({useCdn: false})
       .fetch<{slug: string}[]>(PACKAGE_SLUGS_QUERY)
     
-    const set = new Set<string>()
-    if (Array.isArray(slugs)) {
-      slugs.forEach((item) => {
-        if (item?.slug) set.add(item.slug)
-      })
+    if (Array.isArray(slugs) && slugs.length > 0) {
+      return slugs.filter((item) => item?.slug).map((item) => ({slug: item.slug}))
     }
-    ALL_PACKAGES.forEach((p) => {
-      if (p.slug?.current) set.add(p.slug.current)
-    })
-    return Array.from(set).map((slug) => ({slug}))
+    return []
   } catch {
-    return ALL_PACKAGES.map((p) => ({slug: p.slug.current}))
+    return []
   }
 }
 
 export async function generateMetadata({params}: PackagePageProps): Promise<Metadata> {
   const {slug} = await params
   const pkg = await getPackageBySlug(slug)
-  const fallbackPkg = ALL_PACKAGES.find((p) => p.slug.current === slug)
-  const target = pkg || fallbackPkg
 
-  if (!target) {
+  if (!pkg) {
     return {title: 'Tour Package Not Found — HappyFlying'}
   }
 
-  const seo = target.seo
+  const seo = pkg.seo
   return {
-    title: seo?.metaTitle || `${target.title} — HappyFlying Tours & Travels`,
-    description: seo?.metaDescription || target.summary || `Book ${target.title} with HappyFlying Tours & Travels`,
-    keywords: seo?.keywords || [target.title, target.destination?.name || 'Travel', 'holiday package'],
+    title: seo?.metaTitle || `${pkg.title} — HappyFlying Tours & Travels`,
+    description: seo?.metaDescription || pkg.summary || `Book ${pkg.title} with HappyFlying Tours & Travels`,
+    keywords: seo?.keywords || [pkg.title, pkg.destination?.name || 'Travel', 'holiday package'],
     openGraph: {
-      title: seo?.metaTitle || target.title,
-      description: seo?.metaDescription || target.summary,
+      title: seo?.metaTitle || pkg.title,
+      description: seo?.metaDescription || pkg.summary,
       images: [
         {
           url:
             seo?.openGraphImage?.asset?.url ||
-            target.hero?.asset?.url ||
+            pkg.hero?.asset?.url ||
             'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80',
           width: 1200,
           height: 630,
@@ -90,12 +81,11 @@ export default async function PackageDetailPage({params}: PackagePageProps) {
     getSiteSettings(),
   ])
 
-  const fallbackPkg = ALL_PACKAGES.find((p) => p.slug.current === slug)
-  const packageData = pkg || fallbackPkg
-
-  if (!packageData) {
+  if (!pkg) {
     return notFound()
   }
+
+  const packageData = pkg
 
   const whatsappNumber = settings.whatsapp ? settings.whatsapp.replace(/[^0-9]/g, '') : '919900113691'
   const phone = settings.phone || '+91 9900113691'
