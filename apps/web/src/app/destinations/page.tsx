@@ -3,6 +3,9 @@ import {MapPin, Compass} from 'lucide-react'
 import {getAllDestinations} from '@/lib/sanity/fetch'
 import {DestinationCard} from '@/components/DestinationCard'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Destinations — HappyFlying Tours & Travels',
   description:

@@ -26,6 +26,9 @@ import {PartnerMarquee} from '@/components/PartnerMarquee'
 import {TestimonialSlider} from '@/components/TestimonialSlider'
 import {MobileCardCarousel} from '@/components/MobileCardCarousel'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function HomePage() {
   const [settings, liveFeatured, allPackages, liveDestinations, testimonials] = await Promise.all([
     getSiteSettings(),

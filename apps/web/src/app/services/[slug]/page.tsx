@@ -16,6 +16,10 @@ import {ALL_SERVICES_CATALOG} from '@/lib/data/servicesData'
 import {CustomPortableText} from '@/components/CustomPortableText'
 import {EnquiryForm} from '@/components/EnquiryForm'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+
 interface ServicePageProps {
   params: Promise<{slug: string}>
 }

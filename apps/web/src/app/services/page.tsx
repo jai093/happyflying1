@@ -11,6 +11,9 @@ import {
 import { getAllServices, getSiteSettings } from '@/lib/sanity/fetch'
 import { CORE_FEATURED_SERVICES, SPECIALIZED_SERVICES } from '@/lib/data/servicesData'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Travel Services — HappyFlying Tours & Travels',
   description:

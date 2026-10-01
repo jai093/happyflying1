@@ -4,6 +4,9 @@ import {Calendar, User, ArrowRight, Sparkles} from 'lucide-react'
 import {getAllBlogPosts} from '@/lib/sanity/fetch'
 import {SanityImage} from '@/components/SanityImage'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Travel Blog & Guides — HappyFlying Tours & Travels',
   description:

@@ -20,6 +20,10 @@ import {SanityImage} from '@/components/SanityImage'
 import {PackageCard} from '@/components/PackageCard'
 import {FaqJsonLd} from '@/components/JsonLd'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+
 interface DestinationPageProps {
   params: Promise<{slug: string}>
 }

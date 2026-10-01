@@ -3,6 +3,9 @@ import {Sparkles} from 'lucide-react'
 import {getAllPackages, getAllDestinations} from '@/lib/sanity/fetch'
 import {PackagesFilterView} from '@/components/PackagesFilterView'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'All Travel & Holiday Packages — HappyFlying',
   description:

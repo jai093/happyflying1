@@ -25,6 +25,10 @@ import {InclusionsExclusions} from '@/components/InclusionsExclusions'
 import {PackageCard} from '@/components/PackageCard'
 import {ProductOfferJsonLd, FaqJsonLd} from '@/components/JsonLd'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+
 interface PackagePageProps {
   params: Promise<{slug: string}>
 }
