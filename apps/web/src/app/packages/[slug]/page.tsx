@@ -23,6 +23,7 @@ import {SanityImage} from '@/components/SanityImage'
 import {ItineraryTimeline} from '@/components/ItineraryTimeline'
 import {InclusionsExclusions} from '@/components/InclusionsExclusions'
 import {PackageCard} from '@/components/PackageCard'
+import {PackageGallery} from '@/components/PackageGallery'
 import {ProductOfferJsonLd, FaqJsonLd} from '@/components/JsonLd'
 
 export const dynamic = 'force-dynamic'
@@ -256,6 +257,14 @@ export default async function PackageDetailPage({params}: PackagePageProps) {
                   ))}
                 </div>
               </section>
+            )}
+
+            {/* Package Photo Gallery */}
+            {packageData.gallery && packageData.gallery.length > 0 && (
+              <PackageGallery
+                gallery={packageData.gallery}
+                packageTitle={packageData.title}
+              />
             )}
 
             {/* Day-by-Day Timeline Itinerary */}

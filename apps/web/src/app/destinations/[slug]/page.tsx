@@ -18,6 +18,7 @@ import {DESTINATION_SLUGS_QUERY} from '@/lib/sanity/queries'
 import {getDestinationBySlug, getSiteSettings} from '@/lib/sanity/fetch'
 import {SanityImage} from '@/components/SanityImage'
 import {PackageCard} from '@/components/PackageCard'
+import {PackageGallery} from '@/components/PackageGallery'
 import {FaqJsonLd} from '@/components/JsonLd'
 
 export const dynamic = 'force-dynamic'
@@ -240,6 +241,14 @@ export default async function DestinationDetailPage({params}: DestinationPagePro
               ))}
             </div>
           </div>
+        )}
+
+        {/* Destination Photo Gallery */}
+        {data.gallery && data.gallery.length > 0 && (
+          <PackageGallery
+            gallery={data.gallery}
+            packageTitle={data.name}
+          />
         )}
 
         {/* Related Packages for this destination */}
