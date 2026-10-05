@@ -1,6 +1,6 @@
-import type {Metadata} from 'next'
-import {Bot} from 'lucide-react'
-import {TravelPlannerEmbed} from '@/components/TravelPlannerEmbed'
+import type { Metadata } from 'next'
+import { Bot } from 'lucide-react'
+import { TravelPlannerEmbed } from '@/components/TravelPlannerEmbed'
 
 export const metadata: Metadata = {
   title: 'TravelIntell AI Assistant | Smart Travel Itinerary Planner | HappyFlying',
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function TravelPlannerPage() {
   return (
     <>
-      <link rel="preconnect" href="https://happy-flying.vercel.app" crossOrigin="" />
-      <link rel="dns-prefetch" href="https://happy-flying.vercel.app" />
+      <link rel="preconnect" href="https://travelintell.vercel.app/" crossOrigin="" />
+      <link rel="dns-prefetch" href="https://travelintell.vercel.app/" />
 
       <div className="py-6 sm:py-12 px-2 sm:px-6 max-w-7xl mx-auto w-full space-y-6 sm:space-y-8">
         {/* Header */}
@@ -30,7 +30,7 @@ export default function TravelPlannerPage() {
 
         {/* TravelIntell by HappyFlying – Responsive AI Planner Embed */}
         <div className="w-full max-w-[1400px] mx-auto">
-          <TravelPlannerEmbed plannerUrl="https://happy-flying.vercel.app/?embed=true&view=planner" />
+          <TravelPlannerEmbed plannerUrl="https://travelintell.vercel.app/?embed=true&view=planner" />
         </div>
       </div>
     </>

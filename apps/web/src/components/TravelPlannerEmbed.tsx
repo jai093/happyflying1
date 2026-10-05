@@ -1,14 +1,14 @@
 'use client'
 
-import React, {useEffect, useRef, useState} from 'react'
-import {RefreshCw} from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
+import { RefreshCw } from 'lucide-react'
 
 interface TravelPlannerEmbedProps {
   plannerUrl?: string
 }
 
 export function TravelPlannerEmbed({
-  plannerUrl = 'https://happy-flying.vercel.app/?embed=true&view=planner',
+  plannerUrl = 'https://travelintell.vercel.app/?embed=true&view=planner',
 }: TravelPlannerEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState<number>(0)
@@ -88,16 +88,16 @@ export function TravelPlannerEmbed({
             display: 'block',
             ...(isMobile
               ? {
-                  width: `${baseMobileWidth}px`,
-                  height: `${scaledHeight}px`,
-                  transform: `scale(${scale})`,
-                  transformOrigin: '0 0',
-                }
+                width: `${baseMobileWidth}px`,
+                height: `${scaledHeight}px`,
+                transform: `scale(${scale})`,
+                transformOrigin: '0 0',
+              }
               : {
-                  width: '100%',
-                  height: '100%',
-                  minHeight: `${baseHeight}px`,
-                }),
+                width: '100%',
+                height: '100%',
+                minHeight: `${baseHeight}px`,
+              }),
           }}
         />
       </div>
