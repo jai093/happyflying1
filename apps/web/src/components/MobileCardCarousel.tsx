@@ -53,99 +53,78 @@ export function MobileCardCarousel({
     scrollToIndex(activeIndex + 1)
   }
 
-  // Sanitize desktopGridClassName to guarantee desktop classes are NEVER active on mobile
-  // Strips any un-prefixed 'grid', 'grid-cols-*', 'block', or 'sm:*' that would override 'hidden' on mobile (< md)
-  const cleanDesktopGridClass = desktopGridClassName
-    ? desktopGridClassName
-        .split(' ')
-        .filter(
-          (cls) =>
-            cls !== 'grid' &&
-            !cls.startsWith('grid-cols-') &&
-            !cls.startsWith('sm:') &&
-            cls !== 'block' &&
-            cls !== 'flex'
-        )
-        .join(' ')
-    : 'md:grid-cols-2 lg:grid-cols-3 gap-6'
-
   return (
     <div className="w-full">
-      {/* Desktop & Tablet View (strictly hidden on mobile screens < md): Clean responsive grid */}
-      <div className={`hidden md:grid ${cleanDesktopGridClass}`}>
-        {children}
-      </div>
-
-      {/* Mobile Horizontal Snap-Scroll View (< md): Side-to-side touch carousel */}
-      <div className="md:hidden w-full overflow-hidden">
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4 scroll-smooth [&::-webkit-scrollbar]:hidden w-[calc(100%+2rem)]"
-          style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
-        >
-          {items.map((child, idx) => (
-            <div
-              key={idx}
-              className="w-[84vw] max-w-[340px] shrink-0 snap-center first:pl-1 last:pr-1"
-            >
-              {child}
-            </div>
-          ))}
-        </div>
-
-        {/* Carousel Controls matching attached image */}
-        {count > 1 && (
-          <div className="flex items-center justify-center gap-5 pt-3 pb-1">
-            {/* Circular Left Arrow Button */}
-            <button
-              type="button"
-              onClick={scrollPrev}
-              disabled={activeIndex === 0}
-              className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/80 text-slate-800 transition-all ${
-                activeIndex === 0
-                  ? 'opacity-35 cursor-not-allowed'
-                  : 'hover:bg-slate-50 active:scale-95 shadow-xs hover:shadow-md'
-              }`}
-              aria-label="Previous card"
-            >
-              <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
-            </button>
-
-            {/* Pill & Dot Indicators */}
-            <div className="flex items-center gap-2">
-              {items.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => scrollToIndex(idx)}
-                  className={`transition-all duration-300 rounded-full ${
-                    idx === activeIndex
-                      ? 'w-8 h-2.5 bg-[#C5A869]'
-                      : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Circular Right Arrow Button */}
-            <button
-              type="button"
-              onClick={scrollNext}
-              disabled={activeIndex === count - 1}
-              className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/80 text-slate-800 transition-all ${
-                activeIndex === count - 1
-                  ? 'opacity-35 cursor-not-allowed'
-                  : 'hover:bg-slate-50 active:scale-95 shadow-xs hover:shadow-md'
-              }`}
-              aria-label="Next card"
-            >
-              <ChevronRight className="h-5 w-5 stroke-[2.5]" />
-            </button>
+      {/* Unified Responsive Container:
+          - Mobile (< md): flex row with snap-x horizontal swipe and 84vw peek
+          - Desktop (>= md): responsive grid using desktopGridClassName */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className={`flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4 scroll-smooth [&::-webkit-scrollbar]:hidden w-[calc(100%+2rem)] md:w-full md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none md:grid ${desktopGridClassName}`}
+        style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
+      >
+        {items.map((child, idx) => (
+          <div
+            key={idx}
+            className="w-[84vw] max-w-[340px] shrink-0 snap-center first:pl-0.5 last:pr-0.5 md:w-auto md:max-w-none md:shrink md:snap-align-none"
+          >
+            {child}
           </div>
-        )}
+        ))}
       </div>
+
+      {/* Carousel Navigation Controls (Visible ONLY on Mobile < md) */}
+      {count > 1 && (
+        <div className="md:hidden flex items-center justify-center gap-5 pt-4 pb-1">
+          {/* Circular Left Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollPrev}
+            disabled={activeIndex === 0}
+            className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/90 text-slate-800 transition-all ${
+              activeIndex === 0
+                ? 'opacity-30 cursor-not-allowed'
+                : 'hover:bg-slate-50 active:scale-95 shadow-sm hover:shadow-md'
+            }`}
+            aria-label="Previous card"
+          >
+            <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
+          </button>
+
+          {/* Pill & Dot Indicators */}
+          <div className="flex items-center gap-2">
+            {items.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => scrollToIndex(idx)}
+                className={`transition-all duration-300 rounded-full ${
+                  idx === activeIndex
+                    ? 'w-8 h-2.5 bg-[#C5A869]'
+                    : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
+                }`}
+                aria-label={`Go to card ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Circular Right Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollNext}
+            disabled={activeIndex === count - 1}
+            className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/90 text-slate-800 transition-all ${
+              activeIndex === count - 1
+                ? 'opacity-30 cursor-not-allowed'
+                : 'hover:bg-slate-50 active:scale-95 shadow-sm hover:shadow-md'
+            }`}
+            aria-label="Next card"
+          >
+            <ChevronRight className="h-5 w-5 stroke-[2.5]" />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

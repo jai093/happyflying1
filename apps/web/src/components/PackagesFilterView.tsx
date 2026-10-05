@@ -4,6 +4,7 @@ import {useState, useMemo} from 'react'
 import {Search, SlidersHorizontal, Sparkles, Filter} from 'lucide-react'
 import type {TravelPackage, Destination} from '@happyflying/types'
 import {PackageCard} from './PackageCard'
+import {MobileCardCarousel} from './MobileCardCarousel'
 
 interface PackagesFilterViewProps {
   initialPackages: TravelPackage[]
@@ -169,13 +170,13 @@ export function PackagesFilterView({
         )}
       </div>
 
-      {/* Package Grid */}
+      {/* Package Grid / Mobile Carousel */}
       {filteredPackages.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPackages.map((pkg) => (
             <PackageCard key={pkg._id} pkg={pkg} />
           ))}
-        </div>
+        </MobileCardCarousel>
       ) : (
         <div className="rounded-3xl border-2 border-dashed border-slate-200 bg-white p-12 text-center space-y-3">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-xl">

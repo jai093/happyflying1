@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {MapPin, Compass} from 'lucide-react'
 import {getAllDestinations} from '@/lib/sanity/fetch'
 import {DestinationCard} from '@/components/DestinationCard'
+import {MobileCardCarousel} from '@/components/MobileCardCarousel'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -31,11 +32,11 @@ export default async function DestinationsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-6">
         {list.map((destination) => (
           <DestinationCard key={destination._id} destination={destination} />
         ))}
-      </div>
+      </MobileCardCarousel>
     </div>
   )
 }
