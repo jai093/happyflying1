@@ -151,13 +151,13 @@ export default async function HomePage() {
         </div>
 
         {featuredPackages.length > 0 ? (
-          <MobileCardCarousel desktopGridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredPackages.map((pkg) => (
               <PackageCard key={pkg._id} pkg={pkg} />
             ))}
           </MobileCardCarousel>
         ) : (
-          <MobileCardCarousel desktopGridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Fallback Andaman Card if dataset not seeded yet */}
             <PackageCard
               pkg={{
@@ -257,7 +257,7 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <MobileCardCarousel desktopGridClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinations.length > 0 ? (
             destinations.map((dest) => (
               <DestinationCard key={dest._id} destination={dest} />

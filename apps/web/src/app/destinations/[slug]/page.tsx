@@ -18,6 +18,7 @@ import {DESTINATION_SLUGS_QUERY} from '@/lib/sanity/queries'
 import {getDestinationBySlug, getSiteSettings} from '@/lib/sanity/fetch'
 import {SanityImage} from '@/components/SanityImage'
 import {PackageCard} from '@/components/PackageCard'
+import {MobileCardCarousel} from '@/components/MobileCardCarousel'
 import {PackageGallery} from '@/components/PackageGallery'
 import {FaqJsonLd} from '@/components/JsonLd'
 
@@ -275,11 +276,11 @@ export default async function DestinationDetailPage({params}: DestinationPagePro
 
             if (livePackages.length > 0) {
               return (
-                <div className="grid md:grid-cols-3 gap-8">
+                <MobileCardCarousel desktopGridClassName="md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {livePackages.map((pkg) => (
                     <PackageCard key={pkg._id} pkg={pkg} />
                   ))}
-                </div>
+                </MobileCardCarousel>
               )
             }
 

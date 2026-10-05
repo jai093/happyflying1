@@ -10,7 +10,7 @@ interface MobileCardCarouselProps {
 
 export function MobileCardCarousel({
   children,
-  desktopGridClassName = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6',
+  desktopGridClassName = 'md:grid-cols-2 lg:grid-cols-3 gap-6',
 }: MobileCardCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -53,10 +53,26 @@ export function MobileCardCarousel({
     scrollToIndex(activeIndex + 1)
   }
 
+  // Sanitize desktopGridClassName to guarantee desktop classes are NEVER active on mobile
+  // Strips any un-prefixed 'grid', 'grid-cols-*', 'block', or 'sm:*' that would override 'hidden' on mobile (< md)
+  const cleanDesktopGridClass = desktopGridClassName
+    ? desktopGridClassName
+        .split(' ')
+        .filter(
+          (cls) =>
+            cls !== 'grid' &&
+            !cls.startsWith('grid-cols-') &&
+            !cls.startsWith('sm:') &&
+            cls !== 'block' &&
+            cls !== 'flex'
+        )
+        .join(' ')
+    : 'md:grid-cols-2 lg:grid-cols-3 gap-6'
+
   return (
     <div className="w-full">
-      {/* Desktop & Tablet View (md and up): Clean responsive grid */}
-      <div className={`hidden md:grid ${desktopGridClassName}`}>
+      {/* Desktop & Tablet View (strictly hidden on mobile screens < md): Clean responsive grid */}
+      <div className={`hidden md:grid ${cleanDesktopGridClass}`}>
         {children}
       </div>
 
@@ -65,13 +81,13 @@ export function MobileCardCarousel({
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-1 scroll-smooth [&::-webkit-scrollbar]:hidden w-full"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4 scroll-smooth [&::-webkit-scrollbar]:hidden w-[calc(100%+2rem)]"
           style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
         >
           {items.map((child, idx) => (
             <div
               key={idx}
-              className="w-[82vw] max-w-[320px] shrink-0 snap-center"
+              className="w-[84vw] max-w-[340px] shrink-0 snap-center first:pl-1 last:pr-1"
             >
               {child}
             </div>
@@ -89,7 +105,7 @@ export function MobileCardCarousel({
               className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/80 text-slate-800 transition-all ${
                 activeIndex === 0
                   ? 'opacity-35 cursor-not-allowed'
-                  : 'hover:bg-slate-50 active:scale-95 shadow-sm hover:shadow'
+                  : 'hover:bg-slate-50 active:scale-95 shadow-xs hover:shadow-md'
               }`}
               aria-label="Previous card"
             >
@@ -121,7 +137,7 @@ export function MobileCardCarousel({
               className={`flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md border border-slate-200/80 text-slate-800 transition-all ${
                 activeIndex === count - 1
                   ? 'opacity-35 cursor-not-allowed'
-                  : 'hover:bg-slate-50 active:scale-95 shadow-sm hover:shadow'
+                  : 'hover:bg-slate-50 active:scale-95 shadow-xs hover:shadow-md'
               }`}
               aria-label="Next card"
             >
@@ -133,4 +149,3 @@ export function MobileCardCarousel({
     </div>
   )
 }
-
