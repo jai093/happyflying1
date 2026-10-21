@@ -118,6 +118,28 @@ export async function generateMetadata(): Promise<Metadata> {
         { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
       ],
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: defaultSeo?.metaTitle || 'HappyFlying Tours & Travels',
+      description:
+        defaultSeo?.metaDescription ||
+        'Bangalore’s trusted luxury travel agency in Koramangala. Andaman, Bali, Dubai, and bespoke worldwide tours.',
+      images: [
+        defaultSeo?.openGraphImage?.asset?.url ||
+          'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85',
+      ],
+    },
     manifest: '/site.webmanifest',
   }
 }
