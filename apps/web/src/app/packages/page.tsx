@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'All Travel & Holiday Packages — HappyFlying',
   description:
     'Discover curated Andaman island holidays, bespoke domestic tours, and international luxury getaways.',
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/packages',
+  },
 }
 
 export default async function PackagesPage() {

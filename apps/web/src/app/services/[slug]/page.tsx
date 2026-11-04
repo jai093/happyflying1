@@ -58,6 +58,9 @@ export async function generateMetadata({params}: ServicePageProps): Promise<Meta
   return {
     title: `${target.title} — HappyFlying Services`,
     description: target.shortDescription || `Explore ${target.title} by HappyFlying Tours & Travels`,
+    alternates: {
+      canonical: `https://www.happyflyingtravels.com/services/${slug}`,
+    },
   }
 }
 

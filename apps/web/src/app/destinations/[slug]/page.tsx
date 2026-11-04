@@ -58,6 +58,9 @@ export async function generateMetadata({params}: DestinationPageProps): Promise<
     title: seo?.metaTitle || `${destination.name} Travel Guide & Packages`,
     description: seo?.metaDescription || destination.shortDescription || `Explore ${destination.name} with HappyFlying`,
     keywords: seo?.keywords || [destination.name, 'travel guide', 'island packages'],
+    alternates: {
+      canonical: `https://www.happyflyingtravels.com/destinations/${slug}`,
+    },
   }
 }
 

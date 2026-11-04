@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: 'Travel Blog & Guides — HappyFlying Tours & Travels',
   description:
     'Travel tips, island guides, flight secrets, and itinerary inspiration curated by HappyFlying destination specialists.',
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/blog',
+  },
 }
 
 export default async function BlogPage() {

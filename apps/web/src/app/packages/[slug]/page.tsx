@@ -62,6 +62,9 @@ export async function generateMetadata({params}: PackagePageProps): Promise<Meta
     title: seo?.metaTitle || `${pkg.title} — HappyFlying Tours & Travels`,
     description: seo?.metaDescription || pkg.summary || `Book ${pkg.title} with HappyFlying Tours & Travels`,
     keywords: seo?.keywords || [pkg.title, pkg.destination?.name || 'Travel', 'holiday package'],
+    alternates: {
+      canonical: `https://www.happyflyingtravels.com/packages/${slug}`,
+    },
     openGraph: {
       title: seo?.metaTitle || pkg.title,
       description: seo?.metaDescription || pkg.summary,

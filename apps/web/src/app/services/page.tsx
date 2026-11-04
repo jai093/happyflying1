@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Travel Services — HappyFlying Tours & Travels',
   description:
     'Comprehensive travel services: bespoke holiday packages, airline bookings, luxury cruise reservations, and specialized travel solutions.',
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/services',
+  },
 }
 
 export default async function ServicesPage() {

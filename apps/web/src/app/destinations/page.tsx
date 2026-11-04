@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: 'Destinations — HappyFlying Tours & Travels',
   description:
     'Explore exotic islands and bespoke vacation destinations curated by HappyFlying.',
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/destinations',
+  },
 }
 
 export default async function DestinationsPage() {

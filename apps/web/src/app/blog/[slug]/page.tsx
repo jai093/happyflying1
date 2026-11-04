@@ -44,6 +44,9 @@ export async function generateMetadata({params}: BlogPostPageProps): Promise<Met
   return {
     title: `${post.title} — HappyFlying Travel Blog`,
     description: post.excerpt || post.title,
+    alternates: {
+      canonical: `https://www.happyflyingtravels.com/blog/${slug}`,
+    },
   }
 }
 
