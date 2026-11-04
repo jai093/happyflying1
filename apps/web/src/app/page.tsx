@@ -80,8 +80,11 @@ export default async function HomePage() {
 
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-5 sm:space-y-8 w-full">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-slate-900/50 backdrop-blur-md px-3.5 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm max-w-full">
-            <span className="text-white text-[10px] shrink-0">▶</span>
-            <span className="truncate">{settings.companyName || 'HappyFlying Tours & Travels LLP'}</span>
+            <Link href="/travel-planner" className="inline-flex items-center gap-2 hover:text-[#F3B604] transition-colors">
+              <span className="text-[#F3B604] text-[10px] shrink-0">✨</span>
+              <span>Try AI Planner — Instant Custom Itineraries</span>
+              <span className="text-white/60">→</span>
+            </Link>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight break-words">
@@ -218,7 +221,7 @@ export default async function HomePage() {
                   className="inline-flex items-center gap-2 rounded-full bg-[#F3B604] px-8 py-3.5 text-sm font-bold text-slate-950 shadow hover:bg-amber-400 transition-all hover:scale-105"
                 >
                   <Sparkles className="h-4 w-4" />
-                  <span>Launch AI Travel Planner</span>
+                  <span>Try AI Planner</span>
                 </Link>
               </div>
             </div>

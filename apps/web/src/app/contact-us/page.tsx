@@ -1,1 +1,5 @@
-export { default, metadata } from '../contact/page'
+import { permanentRedirect } from 'next/navigation'
+
+export default function ContactUsPage() {
+  permanentRedirect('/contact')
+}

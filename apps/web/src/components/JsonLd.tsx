@@ -77,6 +77,72 @@ export function TravelAgencyJsonLd({
   )
 }
 
+export function SiteNavigationJsonLd({
+  baseUrl = 'https://www.happyflyingtravels.com',
+}: {
+  baseUrl?: string
+}) {
+  const cleanUrl = (baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com')
+    .trim()
+    .replace(/\/+$/, '')
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'SiteNavigationElement',
+        position: 1,
+        name: 'Try AI Planner',
+        description: 'Synthesize custom travel itineraries across 20+ destinations in real-time with our smart AI assistant.',
+        url: `${cleanUrl}/travel-planner`,
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 2,
+        name: 'Bespoke Holiday Packages',
+        description: 'Handcrafted domestic and international luxury holiday tour packages from Bangalore.',
+        url: `${cleanUrl}/packages`,
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 3,
+        name: 'Destinations',
+        description: 'Explore premier holiday destinations from Andaman & Nicobar to Bali, Dubai, and Kashmir.',
+        url: `${cleanUrl}/destinations`,
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 4,
+        name: 'About Us',
+        description: 'Bangalore’s top-rated luxury travel agency headquartered in Koramangala with 10+ years experience.',
+        url: `${cleanUrl}/about`,
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 5,
+        name: 'Services',
+        description: 'Bespoke tour planning, verified hotel stays, flight ticketing, and 24/7 concierge assistance.',
+        url: `${cleanUrl}/services`,
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        position: 6,
+        name: 'Contact Us',
+        description: 'Get in touch with our travel advisors in Koramangala via phone, WhatsApp, or booking enquiry.',
+        url: `${cleanUrl}/contact`,
+      },
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
+    />
+  )
+}
+
 export function ProductOfferJsonLd({
   title,
   description,

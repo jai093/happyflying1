@@ -3,9 +3,27 @@ import { Bot } from 'lucide-react'
 import { TravelPlannerEmbed } from '@/components/TravelPlannerEmbed'
 
 export const metadata: Metadata = {
-  title: 'TravelIntell AI Assistant | Smart Travel Itinerary Planner | HappyFlying',
+  title: 'Try AI Planner | Smart Travel Itinerary Generator',
   description:
-    'Synthesize custom travel itineraries across 20+ domestic and international destinations in real-time. Choose your parameters to preview a day-by-day roadmap and connect directly with our Bangalore travel concierges.',
+    'Try AI Planner by HappyFlying to synthesize custom travel itineraries across 20+ domestic and international destinations in real-time. Preview a day-by-day roadmap and connect directly with our Bangalore travel concierges.',
+  keywords: [
+    'Try AI Planner',
+    'AI Travel Planner',
+    'Smart Travel Itinerary Planner',
+    'HappyFlying AI Planner',
+    'travel itinerary generator',
+    'custom tour planner bangalore',
+  ],
+  alternates: {
+    canonical: 'https://www.happyflyingtravels.com/travel-planner',
+  },
+  openGraph: {
+    title: 'Try AI Planner | Smart Travel Itinerary Generator — HappyFlying',
+    description:
+      'Try AI Planner by HappyFlying to synthesize custom travel itineraries across 20+ domestic and international destinations in real-time.',
+    url: 'https://www.happyflyingtravels.com/travel-planner',
+    type: 'website',
+  },
 }
 
 export default function TravelPlannerPage() {
@@ -18,10 +36,10 @@ export default function TravelPlannerPage() {
         {/* Header */}
         <div className="max-w-3xl px-2 sm:px-0">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3B604]/20 text-[#0A1320] text-xs font-bold uppercase tracking-wider mb-3">
-            <Bot className="h-3.5 w-3.5 text-sky-600" /> TravelIntell AI Assistant
+            <Bot className="h-3.5 w-3.5 text-sky-600" /> Try AI Planner • TravelIntell Assistant
           </div>
           <h1 className="text-2xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Smart Travel Itinerary Planner
+            Try AI Planner — Smart Travel Itinerary Generator
           </h1>
           <p className="mt-2 sm:mt-3 text-sm sm:text-lg text-slate-600 leading-relaxed">
             Synthesize custom travel itineraries across 20+ domestic and international destinations in real-time. Choose your parameters to preview a day-by-day roadmap and connect directly with our Bangalore travel concierges.

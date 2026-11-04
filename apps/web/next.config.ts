@@ -110,6 +110,21 @@ const nextConfig: NextConfig = {
         destination: '/travel-planner',
         permanent: true,
       },
+      {
+        source: '/try-ai-planner',
+        destination: '/travel-planner',
+        permanent: true,
+      },
+      {
+        source: '/try-ai',
+        destination: '/travel-planner',
+        permanent: true,
+      },
+      {
+        source: '/ai',
+        destination: '/travel-planner',
+        permanent: true,
+      },
     ];
   },
 };

@@ -7,7 +7,7 @@ import {draftMode} from 'next/headers'
 import {Header} from '@/components/Header'
 import {Footer} from '@/components/Footer'
 import {FloatingContact} from '@/components/FloatingContact'
-import {TravelAgencyJsonLd} from '@/components/JsonLd'
+import {TravelAgencyJsonLd, SiteNavigationJsonLd} from '@/components/JsonLd'
 import {getSiteSettings} from '@/lib/sanity/fetch'
 
 const geistSans = Geist({
@@ -169,6 +169,7 @@ export default async function RootLayout({
           email={settings.email}
           address={settings.address}
         />
+        <SiteNavigationJsonLd baseUrl={process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com'} />
         <Header settings={settings} />
         <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
         <Footer settings={settings} />

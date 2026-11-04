@@ -48,7 +48,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
     {_key: 'nav-4', label: 'Services', href: '/services'},
     {_key: 'nav-5', label: 'About', href: '/about'},
     {_key: 'nav-6', label: 'Blog', href: '/blog'},
-    {_key: 'nav-7', label: 'Travel Planner', href: '/travel-planner'},
+    {_key: 'nav-7', label: 'Try AI Planner', href: '/travel-planner'},
     {_key: 'nav-8', label: 'Contact', href: '/contact'},
   ],
   bookingCta: {

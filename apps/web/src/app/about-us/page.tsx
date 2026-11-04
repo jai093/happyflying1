@@ -1,1 +1,5 @@
-export { default, metadata } from '../about/page'
+import { permanentRedirect } from 'next/navigation'
+
+export default function AboutUsPage() {
+  permanentRedirect('/about')
+}

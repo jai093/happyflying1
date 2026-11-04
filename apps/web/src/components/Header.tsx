@@ -33,7 +33,7 @@ export function Header({ settings }: HeaderProps) {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Travel Planner', href: '/travel-planner' },
+    { label: 'Try AI Planner', href: '/travel-planner' },
     { label: 'Blogs', href: '/blog' },
   ]
 

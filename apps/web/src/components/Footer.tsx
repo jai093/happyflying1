@@ -107,8 +107,8 @@ export function Footer({settings}: FooterProps) {
               </Link>
             </li>
             <li>
-              <Link href="/travel-planner" className="hover:text-white transition-colors">
-                AI Travel Planner
+              <Link href="/travel-planner" className="hover:text-white transition-colors text-[#F3B604] font-medium">
+                Try AI Planner
               </Link>
             </li>
           </ul>
