@@ -164,6 +164,7 @@ export default async function RootLayout({
       >
         <TravelAgencyJsonLd
           name={settings.companyName}
+          url={process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com/'}
           telephone={settings.phone}
           email={settings.email}
           address={settings.address}

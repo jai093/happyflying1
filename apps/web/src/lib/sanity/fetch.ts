@@ -34,7 +34,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   phone: '+91 9900113691',
   whatsapp: '919900113691',
   email: 'operations@happyflyingtravels.com',
-  address: 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala, Bangalore, Karnataka 560034',
+  address: 'No. 145, 3rd Floor, 80 Feet Road, KHB Colony, 5th Block, Koramangala, Bengaluru, Karnataka 560034',
   footerText: 'Where every journey takes wing with elegance, care, and unforgettable discovery. Headquartered in Koramangala, Bangalore.',
   socialLinks: [
     {_key: 'ig', platform: 'instagram', url: 'https://www.instagram.com/happyflying.in'},

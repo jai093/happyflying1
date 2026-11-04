@@ -51,7 +51,7 @@ export const siteSettings = defineType({
       title: 'Headquarters Address',
       type: 'text',
       rows: 3,
-      initialValue: 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala, Bangalore, Karnataka 560034',
+      initialValue: 'No. 145, 3rd Floor, 80 Feet Road, KHB Colony, 5th Block, Koramangala, Bengaluru, Karnataka 560034',
       validation: (rule) => rule.required(),
     }),
     defineField({

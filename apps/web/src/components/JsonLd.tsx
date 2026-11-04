@@ -1,33 +1,43 @@
 export function TravelAgencyJsonLd({
-  name = 'HappyFlying Tours & Travels LLP',
-  url = 'https://www.happyflyingtravels.com',
+  type = ['TravelAgency', 'LocalBusiness'],
+  name = 'HappyFlying Tours & Travels',
+  url = 'https://www.happyflyingtravels.com/',
   telephone = '+919900113691',
   email = 'operations@happyflyingtravels.com',
-  address = 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala, Bangalore, Karnataka 560034',
+  address = 'No. 145, 3rd Floor, 80 Feet Road, KHB Colony, 5th Block, Koramangala',
+  areaServed = 'Bengaluru',
 }: {
+  type?: string | string[]
   name?: string
   url?: string
   telephone?: string
   email?: string
   address?: string
+  areaServed?: string | Array<string | object>
 }) {
-  const cleanUrl = url.replace(/\/$/, '')
+  const cleanUrl = (url || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.happyflyingtravels.com')
+    .trim()
+    .replace(/\/+$/, '')
+  const fullSiteUrl = `${cleanUrl}/`
+  const businessName = name ? name.replace(/\s+LLP$/i, '').trim() : 'HappyFlying Tours & Travels'
+  const formattedPhone = (telephone || '+919900113691').replace(/\s+/g, '')
+
   const schema = {
     '@context': 'https://schema.org',
-    '@type': ['TravelAgency', 'LocalBusiness'],
-    name,
+    '@type': type,
+    name: businessName,
     legalName: 'HappyFlying Tours & Travels LLP',
-    url: cleanUrl,
-    telephone,
-    email,
+    url: fullSiteUrl,
+    telephone: formattedPhone,
+    email: email || 'operations@happyflyingtravels.com',
     logo: `${cleanUrl}/happyflyinglogo.png`,
     image: `${cleanUrl}/happyflyinglogo.png`,
     description:
       'Premier luxury travel agency and tour operator in Bangalore located in Koramangala. Specializing in bespoke Andaman, Bali, Dubai, Kashmir, and worldwide holidays from Bangalore.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'No 145, 3rd Floor, 80 Feet Road KHB Colony, 5th Block, Koramangala',
-      addressLocality: 'Bangalore',
+      streetAddress: 'No. 145, 3rd Floor, 80 Feet Road, KHB Colony, 5th Block, Koramangala',
+      addressLocality: 'Bengaluru',
       addressRegion: 'Karnataka',
       postalCode: '560034',
       addressCountry: 'IN',
@@ -38,20 +48,7 @@ export function TravelAgencyJsonLd({
       longitude: 77.6245,
     },
     hasMap: 'https://maps.google.com/?q=HappyFlying+Tours+%26+Travels+Koramangala+Bangalore',
-    areaServed: [
-      {
-        '@type': 'City',
-        name: 'Bangalore',
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Karnataka',
-      },
-      {
-        '@type': 'Country',
-        name: 'India',
-      },
-    ],
+    areaServed,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

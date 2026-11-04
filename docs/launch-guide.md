@@ -159,12 +159,14 @@ Perform these final sanity checks on the live production domain (`https://happyf
   - Click **"Call Advisor"** (`+91 9900113691`) — verify phone dialer triggers.
 - [ ] **Enquiry Form (`/api/enquiry`)**: Submit a test inquiry via the modal / contact page and verify successful submission.
 
-### 2. SEO & Performance Verification
-- [ ] **Sitemap**: Verify `https://happyflying.com/sitemap.xml` is valid and contains all active package & destination URLs.
-- [ ] **Robots.txt**: Verify `https://happyflying.com/robots.txt` allows indexing for search engines.
+### 2. SEO, AI Crawlers & Performance Verification
+- [ ] **Sitemap**: Verify `https://www.happyflyingtravels.com/sitemap.xml` is valid and contains all active package & destination URLs.
+- [ ] **Robots.txt & OpenAI Crawlers**: Verify `https://www.happyflyingtravels.com/robots.txt` explicitly allows OpenAI's search and browsing crawlers (`OAI-SearchBot`, `GPTBot`, `ChatGPT-User`), alongside general search engine bots (`User-agent: *`), while shielding internal `/api/` and `/studio/` endpoints.
+- [ ] **CDN / Firewall / WAF Check**: Confirm that Cloudflare (e.g. "Block AI Scrapers and Crawlers" toggle under Security > Bots) or hosting firewalls are NOT blocking OpenAI's published crawler IP ranges (`https://openai.com/searchbot.json`).
+- [ ] **Structured Business Data (JSON-LD)**: Verify `TravelAgency` / `LocalBusiness` Schema.org JSON-LD appears in the page source and validates cleanly on [Google Rich Results Test](https://search.google.com/test/rich-results) and [Schema.org Validator](https://validator.schema.org/).
 - [ ] **Google Search Console**:
-  - Add `https://happyflying.com` to [Google Search Console](https://search.google.com/search-console).
-  - Submit `https://happyflying.com/sitemap.xml`.
+  - Add `https://www.happyflyingtravels.com` to [Google Search Console](https://search.google.com/search-console).
+  - Submit `https://www.happyflyingtravels.com/sitemap.xml`.
 - [ ] **Social Media Previews**:
   - Test package links in WhatsApp, Facebook Sharing Debugger, or Twitter Card Validator to confirm luxury OpenGraph images and descriptions render properly.
 
