@@ -117,7 +117,7 @@ export default async function HomePage() {
           {/* Quick Assurance Badges */}
           <div className="pt-6 sm:pt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-300 font-medium px-2">
             <span className="flex items-center gap-1.5 shrink-0 bg-slate-900/60 backdrop-blur-xs px-3 py-1 rounded-full border border-amber-400/30 text-amber-300 font-bold">
-              <span className="text-amber-400">★</span> 4.9/5 Rating (150+ Google Reviews)
+              <span className="text-amber-400">★</span> 4.9/5 Rating (16 Google Reviews)
             </span>
             <span className="flex items-center gap-1.5 shrink-0">
               <CheckCircle2 className="h-4 w-4 text-[#F3B604] shrink-0" /> 100% Certified Agency
@@ -391,7 +391,7 @@ export default async function HomePage() {
                   ★ ★ ★ ★ ★
                 </div>
                 <span className="font-extrabold text-slate-950">4.9 / 5</span>
-                <span className="text-slate-600 font-medium">• Based on 150+ Verified Google Reviews</span>
+                <span className="text-slate-600 font-medium">• Based on 16 Verified Google Reviews</span>
               </div>
             </div>
 

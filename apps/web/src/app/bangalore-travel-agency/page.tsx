@@ -136,7 +136,7 @@ export default async function BangaloreTravelAgencyPage() {
           <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-slate-300">
             <span className="flex items-center text-amber-400 font-bold">★★★★★</span>
             <span className="font-bold text-white">4.9 / 5</span>
-            <span className="text-slate-400">• 150+ Verified Google Reviews</span>
+            <span className="text-slate-400">• 16 Verified Google Reviews</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">

@@ -93,7 +93,7 @@ export function TravelAgencyJsonLd({
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
-      reviewCount: '150',
+      reviewCount: '16',
       bestRating: '5',
       worstRating: '1',
     },
