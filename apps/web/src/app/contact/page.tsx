@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import Link from 'next/link'
 import {
   MapPin,
   Mail,
@@ -64,6 +65,14 @@ export default async function ContactPage() {
                 <div>
                   <span className="block font-bold text-slate-900">Office Address</span>
                   <p className="text-slate-600 mt-0.5 leading-relaxed">{address}</p>
+                  <a
+                    href="https://maps.google.com/?q=HappyFlying+Tours+%26+Travels+Koramangala+Bangalore"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-1 text-xs font-semibold text-sky-700 hover:text-sky-900 underline"
+                  >
+                    Get Google Maps Directions →
+                  </a>
                 </div>
               </div>
 
@@ -124,6 +133,31 @@ export default async function ContactPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Local Travel Desks Card */}
+          <div className="rounded-[28px] border border-sky-100 bg-sky-50/70 p-6 space-y-3">
+            <h3 className="text-sm font-bold text-slate-900">Bangalore Travel Desks</h3>
+            <ul className="space-y-2.5 text-xs text-sky-900 font-medium">
+              <li>
+                <Link href="/koramangala-travel-agency" className="hover:underline flex items-center justify-between">
+                  <span>Koramangala Office & Hours</span>
+                  <span>→</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/bangalore-travel-agency" className="hover:underline flex items-center justify-between">
+                  <span>Bangalore Citywide Services</span>
+                  <span>→</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/tour-packages-from-bangalore" className="hover:underline flex items-center justify-between">
+                  <span>Tour Packages from Bangalore (BLR)</span>
+                  <span>→</span>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 

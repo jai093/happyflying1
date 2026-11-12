@@ -99,6 +99,12 @@ export default async function AboutPage() {
             </div>
             <h4 className="font-bold text-slate-900 text-base">Bangalore HQ</h4>
             <p className="text-xs text-slate-500">Accessible office in Koramangala 5th Block, Bangalore.</p>
+            <Link
+              href="/koramangala-travel-agency"
+              className="inline-block text-xs font-semibold text-sky-700 hover:text-sky-900"
+            >
+              Explore Koramangala Office →
+            </Link>
           </div>
         </div>
       </div>
