@@ -26,12 +26,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/travel-planner',
     '/blog',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: (route === '' || route === '/travel-planner' || route === '/packages' ? 'daily' : 'weekly') as 'daily' | 'weekly',
-    priority: route === '' ? 1.0 : route === '/travel-planner' ? 0.95 : route === '/packages' ? 0.9 : 0.8,
-  }))
+    '/koramangala-travel-agency',
+    '/bangalore-travel-agency',
+    '/tour-packages-from-bangalore',
+  ].map((route) => {
+    const isHighPriority =
+      route === '' ||
+      route === '/travel-planner' ||
+      route === '/packages' ||
+      route === '/tour-packages-from-bangalore' ||
+      route === '/koramangala-travel-agency' ||
+      route === '/bangalore-travel-agency'
+
+    return {
+      url: `${baseUrl}${route}`,
+      lastModified: new Date(),
+      changeFrequency: (isHighPriority ? 'daily' : 'weekly') as 'daily' | 'weekly',
+      priority:
+        route === ''
+          ? 1.0
+          : route === '/travel-planner' ||
+            route === '/tour-packages-from-bangalore' ||
+            route === '/koramangala-travel-agency' ||
+            route === '/bangalore-travel-agency'
+          ? 0.95
+          : route === '/packages'
+          ? 0.9
+          : 0.8,
+    }
+  })
 
   const packageRoutes = packages.map((pkg) => ({
     url: `${baseUrl}/packages/${pkg.slug?.current || pkg.slug}`,

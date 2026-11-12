@@ -18,7 +18,7 @@ export function Footer({settings}: FooterProps) {
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand Column */}
         <div className="space-y-4">
-          <Link href="/" className="inline-flex items-center gap-3 group">
+          <Link href="/" className="inline-flex items-center gap-3 group" aria-label="HappyFlying Tours & Travels Home">
             <div className="relative h-14 sm:h-16 w-auto flex items-center justify-center bg-white rounded-2xl px-4 py-1.5 shadow-sm border border-slate-100">
               <img
                 src="/happyflyinglogo.png"
@@ -102,6 +102,11 @@ export function Footer({settings}: FooterProps) {
               </Link>
             </li>
             <li>
+              <Link href="/tour-packages-from-bangalore" className="hover:text-white transition-colors text-sky-300 font-medium">
+                Tour Packages from Bangalore
+              </Link>
+            </li>
+            <li>
               <Link href="/packages" className="hover:text-white transition-colors">
                 All Holiday Packages
               </Link>
@@ -117,9 +122,19 @@ export function Footer({settings}: FooterProps) {
         {/* Services & Company */}
         <div>
           <h3 className="mb-4 font-bold text-sm uppercase tracking-wider text-[#F3B604]">
-            Services & Company
+            Bangalore Travel Desk
           </h3>
           <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+            <li>
+              <Link href="/koramangala-travel-agency" className="hover:text-white transition-colors">
+                Koramangala Travel Agency
+              </Link>
+            </li>
+            <li>
+              <Link href="/bangalore-travel-agency" className="hover:text-white transition-colors">
+                Bangalore Travel Agency
+              </Link>
+            </li>
             <li>
               <Link href="/services" className="hover:text-white transition-colors">
                 Bespoke Tour Design

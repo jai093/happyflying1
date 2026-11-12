@@ -79,7 +79,7 @@ export function PackageCard({pkg}: PackageCardProps) {
       {/* Compact Card Body */}
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         <h3 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors line-clamp-1 leading-snug">
-          <Link href={`/packages/${packageSlug}`} title={pkg.title}>
+          <Link href={`/packages/${packageSlug}`} title={pkg.title} aria-label={`View tour itinerary for ${pkg.title}`}>
             {pkg.title}
           </Link>
         </h3>
@@ -118,6 +118,7 @@ export function PackageCard({pkg}: PackageCardProps) {
           <Link
             href={`/packages/${packageSlug}`}
             className="inline-flex items-center gap-1 rounded-xl bg-[#0A1320] px-3.5 py-1.5 text-xs font-bold text-[#F3B604] shadow-xs hover:bg-slate-800 transition-all hover:scale-105"
+            aria-label={`View full package details for ${pkg.title}`}
           >
             <span>View Details</span>
             <ArrowRight className="h-3 w-3" />

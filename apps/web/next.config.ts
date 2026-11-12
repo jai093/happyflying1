@@ -15,6 +15,41 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Enforce www Canonical URL consistency (redirect non-www to www)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'happyflyingtravels.com',
+          },
+        ],
+        destination: 'https://www.happyflyingtravels.com/:path*',
+        permanent: true,
+      },
+      // Redirect legacy domain happyflying.com & www.happyflying.com to www.happyflyingtravels.com
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'happyflying.com',
+          },
+        ],
+        destination: 'https://www.happyflyingtravels.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.happyflying.com',
+          },
+        ],
+        destination: 'https://www.happyflyingtravels.com/:path*',
+        permanent: true,
+      },
       {
         source: '/contact-us',
         destination: '/contact',
@@ -46,13 +81,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/bangalore-travel-agency',
-        destination: '/about',
+        source: '/travel-agency-bangalore',
+        destination: '/bangalore-travel-agency',
         permanent: true,
       },
       {
-        source: '/travel-agency-bangalore',
-        destination: '/about',
+        source: '/travel-agency-koramangala',
+        destination: '/koramangala-travel-agency',
+        permanent: true,
+      },
+      {
+        source: '/bangalore-tour-packages',
+        destination: '/tour-packages-from-bangalore',
         permanent: true,
       },
       {

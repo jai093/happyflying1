@@ -116,6 +116,9 @@ export default async function HomePage() {
 
           {/* Quick Assurance Badges */}
           <div className="pt-6 sm:pt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-300 font-medium px-2">
+            <span className="flex items-center gap-1.5 shrink-0 bg-slate-900/60 backdrop-blur-xs px-3 py-1 rounded-full border border-amber-400/30 text-amber-300 font-bold">
+              <span className="text-amber-400">★</span> 4.9/5 Rating (150+ Google Reviews)
+            </span>
             <span className="flex items-center gap-1.5 shrink-0">
               <CheckCircle2 className="h-4 w-4 text-[#F3B604] shrink-0" /> 100% Certified Agency
             </span>
@@ -383,6 +386,13 @@ export default async function HomePage() {
               <p className="mt-2 text-slate-600 text-sm">
                 Real feedback from travelers who explored the world with HappyFlying Tours & Travels.
               </p>
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-900 shadow-xs">
+                <div className="flex items-center text-amber-500 font-bold">
+                  ★ ★ ★ ★ ★
+                </div>
+                <span className="font-extrabold text-slate-950">4.9 / 5</span>
+                <span className="text-slate-600 font-medium">• Based on 150+ Verified Google Reviews</span>
+              </div>
             </div>
 
             <TestimonialSlider testimonials={testimonials} />
@@ -414,8 +424,8 @@ export default async function HomePage() {
               <p className="text-xs text-slate-600 leading-relaxed">
                 Located on 80 Feet Road, 5th Block, Koramangala. Meet our destination specialists for one-on-one custom trip planning.
               </p>
-              <Link href="/contact" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
-                Get Office Directions →
+              <Link href="/koramangala-travel-agency" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                Koramangala Office & Hours →
               </Link>
             </div>
 
@@ -427,8 +437,8 @@ export default async function HomePage() {
               <p className="text-xs text-slate-600 leading-relaxed">
                 Handcrafted flight packages departing BLR to Port Blair (Andaman), Bali (Denpasar), Dubai, Singapore, and Europe.
               </p>
-              <Link href="/packages" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
-                Explore Tour Packages →
+              <Link href="/tour-packages-from-bangalore" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                Tour Packages from Bangalore →
               </Link>
             </div>
 
@@ -440,8 +450,8 @@ export default async function HomePage() {
               <p className="text-xs text-slate-600 leading-relaxed">
                 10+ years of verified travel expertise, trusted airline partnerships, guaranteed cruise bookings, and 24/7 on-tour safety.
               </p>
-              <Link href="/about" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
-                About HappyFlying →
+              <Link href="/bangalore-travel-agency" className="inline-block text-xs font-bold text-sky-700 hover:text-sky-900">
+                Bangalore Travel Agency →
               </Link>
             </div>
           </div>

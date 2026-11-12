@@ -25,15 +25,21 @@ export function TravelAgencyJsonLd({
   const schema = {
     '@context': 'https://schema.org',
     '@type': type,
+    '@id': `${cleanUrl}/#travelagency`,
     name: businessName,
     legalName: 'HappyFlying Tours & Travels LLP',
     url: fullSiteUrl,
     telephone: formattedPhone,
     email: email || 'operations@happyflyingtravels.com',
-    logo: `${cleanUrl}/happyflyinglogo.png`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${cleanUrl}/happyflyinglogo.png`,
+      width: '512',
+      height: '512',
+    },
     image: `${cleanUrl}/happyflyinglogo.png`,
     description:
-      'Premier luxury travel agency and tour operator in Bangalore located in Koramangala. Specializing in bespoke Andaman, Bali, Dubai, Kashmir, and worldwide holidays from Bangalore.',
+      'Premier luxury travel agency and tour operator in Bangalore located in Koramangala. Specializing in bespoke Andaman, Bali, Dubai, Kashmir, and worldwide holidays from Bangalore with 24/7 concierge assistance.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'No. 145, 3rd Floor, 80 Feet Road, KHB Colony, 5th Block, Koramangala',
@@ -44,11 +50,35 @@ export function TravelAgencyJsonLd({
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 12.9352,
-      longitude: 77.6245,
+      latitude: 12.9348,
+      longitude: 77.6190,
     },
     hasMap: 'https://maps.google.com/?q=HappyFlying+Tours+%26+Travels+Koramangala+Bangalore',
-    areaServed,
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Bengaluru',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Karnataka',
+      },
+      {
+        '@type': 'Country',
+        name: 'India',
+      },
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: formattedPhone,
+      contactType: 'customer service',
+      areaServed: 'IN',
+      availableLanguage: ['English', 'Hindi', 'Kannada'],
+    },
+    sameAs: [
+      'https://www.instagram.com/happyflying.in',
+      'https://wa.me/919900113691',
+    ],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

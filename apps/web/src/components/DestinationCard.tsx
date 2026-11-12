@@ -56,7 +56,7 @@ export function DestinationCard({destination}: DestinationCardProps) {
         </div>
 
         <h3 className="text-lg sm:text-xl font-extrabold text-white group-hover:text-[#F3B604] transition-colors leading-snug">
-          <Link href={`/destinations/${slug}`}>
+          <Link href={`/destinations/${slug}`} aria-label={`Explore tour packages for ${destination.name}`}>
             {destination.name}
           </Link>
         </h3>
@@ -71,6 +71,7 @@ export function DestinationCard({destination}: DestinationCardProps) {
           <Link
             href={`/destinations/${slug}`}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-white group-hover:text-[#F3B604] transition-colors"
+            aria-label={`Explore all ${destination.name} tours and guides`}
           >
             <span>Explore Tours</span>
             <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />

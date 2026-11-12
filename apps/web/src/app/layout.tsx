@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       defaultSeo?.metaDescription ||
-      'HappyFlying Tours & Travels is Bangalore’s top-rated travel agency in Koramangala. Handcrafted Andaman, Bali, Dubai, Kashmir & luxury international tour packages from Bangalore with 24/7 concierge assistance.',
+      'Bangalore’s top-rated travel agency in Koramangala. Handcrafted Andaman, Bali, Dubai & luxury holiday packages from Bangalore with 24/7 concierge assistance.',
     keywords: defaultSeo?.keywords || [
       'travel agency in bangalore',
       'best tour operators in bangalore',
@@ -69,9 +69,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     other: {
       'geo.region': 'IN-KA',
-      'geo.placename': 'Bangalore, Koramangala',
-      'geo.position': '12.9352;77.6245',
-      ICBM: '12.9352, 77.6245',
+      'geo.placename': 'Koramangala, Bengaluru',
+      'geo.position': '12.9348;77.6190',
+      ICBM: '12.9348, 77.6190',
     },
     metadataBase: new URL(
       (() => {
